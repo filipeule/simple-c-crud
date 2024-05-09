@@ -2,12 +2,12 @@
 #include <stdio.h>
 // srand, rand, NULL, EXIT_SUCCESS, EXIT_FAILURE
 #include <stdlib.h>
-// time
-#include <time.h>
 // bool, true, false
 #include <stdbool.h>
+// time
+#include <time.h>
 
-// defino o tamanho máximo dos atributos da struct, além dos caminhos para o database e o database_temp pra fazer operações de update e delete
+// defino o tamanho máximo dos atributos da struct, além dos caminhos para o datzabase e o database_temp pra faer operações de update e delete
 #define MAX_SIZE 50
 #define DATABASE "users.dat"
 #define DATABASE_TEMP "temp.dat"
@@ -35,7 +35,8 @@ int main() {
     while (runningProgram) {
         // opção em int, pois o scanf já formata para inteiro de acordo com o formatador usado
         int option;
-
+        
+        // declarar as operações disponíveis
         printf("Operations available:\n");
         printf("1. Create User\n");
         printf("2. List All Users\n");
@@ -44,6 +45,7 @@ int main() {
         printf("0. Exit\n\n");
 
         printf("Choose an option: > ");
+        // lembrar que scanf precisa de um ponteiro
         scanf("%d", &option);
 
         switch (option) {
@@ -72,6 +74,7 @@ int main() {
     return EXIT_SUCCESS;
 }
 
+// criando um usuário
 void createUser() {
     printf("\n### CREATING A NEW USER ###\n\n");
 
@@ -109,6 +112,7 @@ void createUser() {
     fclose(fileHandler);
 }
 
+// listar todos os usuários
 void listAllUsers() {
     printf("\n### LISTING ALL USERS ###\n\n");
 
@@ -127,7 +131,7 @@ void listAllUsers() {
     // fazer a leitura do arquivo, enquanto tiver valores para ler, armazenando na struct os valores que estão no arquivo
     while (fread(&user, sizeof(user), 1, fileHandler) == 1) {
         // printando na tela os arquivos
-        printf("%d - %s - %s\n", user.id, user.username, user.email);
+        printf("ID: %d - USERNAME: %s - EMAIL: %s\n", user.id, user.username, user.email);
     }
 
     printf("\n");
@@ -136,6 +140,7 @@ void listAllUsers() {
     fclose(fileHandler);
 }
 
+// atualizar um usuário
 void updateUser() {
     printf("\n### UPDATING A USER ###\n\n");
 
